@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Match Point Pisco · Erik Mayea, entrenador de tenis</title>
+<meta name="description" content="Clases de tenis en Pisco con el entrenador Erik Mayea. Personalizada, de dos, de tres, grupal e infantil. Cancha, raquetas y materiales incluidos. Reserva por WhatsApp.">
+<link rel="icon" href="img/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,700;1,800;1,900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-900:#06281b;
+  --green-800:#0a3a27;
+  --green-700:#0f4a32;
+  --court:#1f5fa8;
+  --court-dark:#163f73;
+  --ball:#d9f53a;
+  --ball-soft:#eefb9a;
+  --clay:#c8643b;
+  --white:#f6f8f3;
+  --ink:#0b1a13;
+  --wa:#25d366;
+  --radius:22px;
+  --display:'Barlow Condensed', Impact, sans-serif;
+  --body:'Montserrat', system-ui, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body,section{overflow-x:clip}
+body{font-family:var(--body);background:var(--green-900);color:var(--white);overflow-x:hidden;line-height:1.55}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{width:min(1180px,92vw);margin-inline:auto}
+
+/* ---------- NAV ---------- */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s, box-shadow .3s}
+.nav.solid{background:rgba(6,40,27,.92);backdrop-filter:blur(10px);box-shadow:0 6px 30px rgba(0,0,0,.35)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:46px;height:46px;border-radius:50%}
+.brand b{font-family:var(--display);font-style:italic;font-weight:900;font-size:1.55rem;letter-spacing:.5px;line-height:1}
+.brand small{display:block;font-size:.62rem;letter-spacing:3px;color:var(--ball);font-weight:700}
+.nav ul{display:flex;gap:28px;list-style:none}
+.nav ul a{text-decoration:none;font-weight:600;font-size:.88rem;opacity:.85;position:relative}
+.nav ul a:hover{opacity:1}
+.nav ul a::after{content:"";position:absolute;left:0;bottom:-6px;height:3px;width:0;background:var(--ball);border-radius:3px;transition:width .25s}
+.nav ul a:hover::after{width:100%}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:none;cursor:pointer;text-decoration:none;font-family:var(--body);font-weight:800;border-radius:999px;transition:transform .2s, box-shadow .2s, background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-ball{background:var(--ball);color:var(--green-900);padding:14px 26px;box-shadow:0 10px 30px rgba(217,245,58,.25)}
+.btn-ball:hover{box-shadow:0 14px 40px rgba(217,245,58,.45)}
+.btn-wa{background:var(--wa);color:#fff;padding:14px 24px;box-shadow:0 10px 26px rgba(37,211,102,.3)}
+.btn-wa:hover{box-shadow:0 14px 36px rgba(37,211,102,.5)}
+.btn-ghost{border:2px solid rgba(255,255,255,.5);color:#fff;padding:12px 24px}
+.btn-ghost:hover{border-color:var(--ball);color:var(--ball)}
+.nav .btn{padding:10px 18px;font-size:.85rem}
+.wa-ico{width:20px;height:20px;flex:none}
+.menu-toggle{display:none;background:none;border:0;color:#fff;cursor:pointer}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;
+  background:linear-gradient(100deg, rgba(6,40,27,.97) 0%, rgba(6,40,27,.85) 38%, rgba(6,40,27,.15) 70%), url('img/erik-hero.webp') right center/cover no-repeat}
+.hero::before{ /* court lines */
+  content:"";position:absolute;inset:auto -10% -2px -10%;height:38%;
+  background:
+    linear-gradient(var(--white),var(--white)) 50% 0/4px 100% no-repeat,
+    linear-gradient(var(--white),var(--white)) 0 30%/100% 4px no-repeat;
+  opacity:.08;transform:perspective(500px) rotateX(55deg);transform-origin:bottom}
+.hero .wrap{position:relative;z-index:2;padding-top:90px}
+.tag{display:inline-flex;align-items:center;gap:8px;background:rgba(217,245,58,.12);border:1px solid rgba(217,245,58,.4);color:var(--ball);padding:7px 16px;border-radius:999px;font-weight:700;font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase}
+.hero h1{font-family:var(--display);font-style:italic;font-weight:900;font-size:clamp(4rem,12vw,9.5rem);line-height:.82;letter-spacing:-1px;margin:22px 0 6px;text-transform:uppercase}
+.hero h1 span{display:block;color:var(--ball);text-shadow:0 0 40px rgba(217,245,58,.35)}
+.hero .role{font-family:var(--display);font-weight:600;letter-spacing:10px;font-size:clamp(1rem,2.4vw,1.5rem);text-transform:uppercase;opacity:.9}
+.hero p.lead{max-width:520px;font-size:1.08rem;margin:22px 0 32px;opacity:.9}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px}
+.scoreboard{display:flex;gap:0;margin-top:46px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden;width:max-content;max-width:100%}
+.scoreboard div{padding:14px 26px;text-align:center;border-right:1px solid rgba(255,255,255,.1)}
+.scoreboard div:last-child{border-right:0}
+.scoreboard b{display:block;font-family:var(--display);font-weight:800;font-size:2.2rem;color:var(--ball);line-height:1}
+.scoreboard small{font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;opacity:.75}
+
+/* bouncing ball */
+.ball{position:absolute;width:var(--s,58px);height:var(--s,58px);border-radius:50%;
+  background:radial-gradient(circle at 32% 30%, #f6ffb0 0 12%, var(--ball) 40%, #a9c21b 100%);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);z-index:3;pointer-events:none}
+.ball{overflow:hidden;background:
+  radial-gradient(circle at -38% 50%, transparent 60%, rgba(255,255,255,.9) 61% 66%, transparent 67%),
+  radial-gradient(circle at 138% 50%, transparent 60%, rgba(255,255,255,.9) 61% 66%, transparent 67%),
+  radial-gradient(circle at 32% 30%, #f6ffb0 0 12%, var(--ball) 40%, #a9c21b 100%)}
+.hero .ball{right:36%;bottom:18%;animation:bounce 1.6s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes bounce{0%,100%{transform:translateY(0) rotate(0) scale(1.08,.9)}10%{transform:translateY(-10px) scale(1)}50%{transform:translateY(-230px) rotate(200deg)}90%{transform:translateY(-10px)}}
+.shadow{position:absolute;right:calc(36% + 4px);bottom:calc(18% - 14px);width:50px;height:12px;border-radius:50%;background:rgba(0,0,0,.45);filter:blur(4px);z-index:2;animation:shadow 1.6s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes shadow{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(.45);opacity:.25}}
+
+/* ---------- MARQUEE ---------- */
+.marquee{background:var(--ball);color:var(--green-900);overflow:hidden;transform:rotate(-2deg);margin:-28px -2vw 0;position:relative;z-index:5;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+.marquee .track{display:flex;width:max-content;animation:slide 26s linear infinite}
+.marquee span{font-family:var(--display);font-style:italic;font-weight:900;font-size:clamp(1.6rem,3.5vw,2.5rem);text-transform:uppercase;padding:14px 26px;white-space:nowrap;display:flex;align-items:center;gap:26px}
+.marquee span::after{content:"";width:22px;height:22px;border-radius:50%;background:var(--green-900);display:inline-block}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- SECTIONS ---------- */
+section{padding:110px 0;position:relative}
+.kicker{font-family:var(--display);font-weight:700;font-style:italic;color:var(--ball);letter-spacing:4px;text-transform:uppercase;font-size:1rem;display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:40px;height:4px;background:var(--ball);border-radius:4px}
+h2{font-family:var(--display);font-style:italic;font-weight:900;text-transform:uppercase;font-size:clamp(2.6rem,6vw,4.6rem);line-height:.92;margin:14px 0 18px}
+h2 em{color:var(--ball);font-style:italic}
+.sub{max-width:640px;opacity:.85;font-size:1.05rem}
+
+/* intro */
+.intro{background:
+   radial-gradient(1200px 500px at 85% 0%, rgba(217,245,58,.08), transparent 60%),
+   var(--green-900)}
+.intro-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.photo-stack{position:relative;aspect-ratio:4/4.4}
+.photo-stack img{position:absolute;border-radius:var(--radius);object-fit:cover;box-shadow:0 30px 60px rgba(0,0,0,.45)}
+.photo-stack .p1{width:70%;height:82%;left:0;top:0;border:6px solid var(--white)}
+.photo-stack .p2{width:62%;height:52%;right:0;bottom:0;border:6px solid var(--ball);transform:rotate(3deg)}
+.photo-stack .badge{position:absolute;left:52%;top:46%;background:var(--clay);color:#fff;border-radius:50%;width:130px;height:130px;display:grid;place-items:center;text-align:center;font-family:var(--display);font-style:italic;font-weight:900;font-size:1.3rem;line-height:1;text-transform:uppercase;box-shadow:0 14px 30px rgba(0,0,0,.4);animation:spin 18s linear infinite;z-index:2}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+.pillar{background:var(--green-800);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px}
+.pillar b{font-family:var(--display);font-weight:800;font-style:italic;font-size:1.35rem;text-transform:uppercase;color:var(--ball);display:block}
+.pillar small{opacity:.8;font-size:.82rem}
+
+/* services */
+.services{background:
+  repeating-linear-gradient(90deg, transparent 0 calc(25% - 2px), rgba(255,255,255,.04) calc(25% - 2px) 25%),
+  linear-gradient(180deg,var(--green-800),var(--green-900))}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin:34px 0 40px}
+.chip{background:transparent;border:2px solid rgba(255,255,255,.25);color:#fff;padding:9px 18px;border-radius:999px;font-weight:700;font-family:var(--body);cursor:pointer;font-size:.85rem;transition:.2s}
+.chip:hover{border-color:var(--ball)}
+.chip.on{background:var(--ball);color:var(--green-900);border-color:var(--ball)}
+.svc-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:28px}
+.svc{flex:1 1 320px;max-width:372px;background:var(--green-700);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.08);transition:transform .35s, box-shadow .35s;position:relative}
+.svc:hover{transform:translateY(-8px) rotate(-.4deg);box-shadow:0 30px 60px rgba(0,0,0,.45), 0 0 0 3px var(--ball)}
+.svc .img{position:relative;aspect-ratio:941/1000;overflow:hidden;cursor:zoom-in;background:#000}
+.svc .img img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .6s}
+.svc:hover .img img{transform:scale(1.06)}
+.svc .people{position:absolute;top:14px;right:14px;background:var(--ball);color:var(--green-900);font-family:var(--display);font-weight:900;font-style:italic;font-size:1.1rem;padding:6px 14px;border-radius:999px;text-transform:uppercase;box-shadow:0 6px 16px rgba(0,0,0,.35)}
+.svc .zoom{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,.55);padding:6px 12px;border-radius:999px;font-size:.72rem;font-weight:700}
+.svc .body{padding:24px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+.svc h3{font-family:var(--display);font-style:italic;font-weight:900;font-size:2.1rem;text-transform:uppercase;line-height:.95}
+.svc .slogan{color:var(--ball);font-weight:700;font-size:.95rem}
+.svc p{opacity:.85;font-size:.93rem;flex:1}
+.svc .meta{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 8px}
+.svc .meta span{font-size:.75rem;font-weight:700;background:rgba(255,255,255,.08);padding:5px 11px;border-radius:999px}
+.svc .actions{display:grid;grid-template-columns:1fr auto;gap:10px}
+.svc .actions .btn-wa{padding:13px 16px;font-size:.88rem}
+.svc .actions .ask{background:rgba(255,255,255,.08);color:#fff;padding:13px 16px;font-size:.82rem}
+.svc .actions .ask:hover{background:rgba(255,255,255,.16)}
+.svc.hide{display:none}
+
+/* included */
+.included{background:var(--court);overflow:hidden}
+.included::before{content:"";position:absolute;inset:40px;border:4px solid rgba(255,255,255,.35);pointer-events:none}
+.included::after{content:"";position:absolute;left:50%;top:40px;bottom:40px;width:4px;background:rgba(255,255,255,.35);pointer-events:none}
+.included .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.inc-list{list-style:none;display:grid;gap:14px}
+.inc-list li{display:flex;align-items:center;gap:16px;background:rgba(6,40,27,.55);backdrop-filter:blur(6px);padding:16px 20px;border-radius:16px;font-weight:600;border:1px solid rgba(255,255,255,.12);transform:translateX(40px);opacity:0;transition:.6s}
+.inc-list.in li{transform:none;opacity:1}
+.inc-list li:nth-child(2){transition-delay:.1s}.inc-list li:nth-child(3){transition-delay:.2s}.inc-list li:nth-child(4){transition-delay:.3s}.inc-list li:nth-child(5){transition-delay:.4s}
+.inc-list .chk{width:36px;height:36px;border-radius:50%;background:var(--ball);color:var(--green-900);display:grid;place-items:center;flex:none;font-weight:900}
+.quote{font-family:var(--display);font-style:italic;font-weight:900;font-size:clamp(2.2rem,5vw,3.8rem);text-transform:uppercase;line-height:.95}
+.quote em{color:var(--ball)}
+
+/* coach / gallery */
+.coach-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:40px}
+.coach-grid figure{border-radius:var(--radius);overflow:hidden;position:relative;cursor:zoom-in}
+.coach-grid img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.coach-grid figure:hover img{transform:scale(1.05)}
+.coach-grid figcaption{position:absolute;left:14px;bottom:14px;background:rgba(6,40,27,.85);padding:6px 12px;border-radius:999px;font-size:.75rem;font-weight:700}
+.g1{grid-column:span 7;aspect-ratio:16/10}
+.g2{grid-column:span 5;grid-row:span 2}
+.g3{grid-column:span 4;aspect-ratio:4/3.2}
+.g4{grid-column:span 3;aspect-ratio:3/3.2}
+
+/* contact */
+.contact{background:
+  radial-gradient(800px 400px at 10% 100%, rgba(37,211,102,.12), transparent 60%),
+  radial-gradient(800px 400px at 90% 0%, rgba(217,245,58,.10), transparent 60%),
+  var(--green-900)}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.direct{display:grid;gap:14px;margin-top:28px}
+.direct a.line{display:flex;align-items:center;gap:16px;background:var(--green-800);border:1px solid rgba(255,255,255,.08);padding:18px 20px;border-radius:16px;text-decoration:none;transition:.2s}
+.direct a.line:hover{border-color:var(--wa);transform:translateX(6px)}
+.direct .ic{width:48px;height:48px;border-radius:14px;background:var(--wa);display:grid;place-items:center;flex:none}
+.direct b{display:block;font-size:1.25rem;letter-spacing:.5px}
+.direct small{opacity:.75}
+form.card{background:var(--white);color:var(--ink);border-radius:28px;padding:36px;position:relative;box-shadow:0 30px 70px rgba(0,0,0,.4)}
+form.card::before{content:"";position:absolute;top:-26px;right:34px;width:64px;height:64px;border-radius:50%;
+  background:radial-gradient(circle at 32% 30%, #f6ffb0 0 12%, var(--ball) 40%, #a9c21b 100%);box-shadow:0 10px 20px rgba(0,0,0,.25)}
+form.card h3{font-family:var(--display);font-style:italic;font-weight:900;text-transform:uppercase;font-size:2.2rem;line-height:1;color:var(--green-800)}
+form.card > p{color:#4a5a52;font-size:.92rem;margin:6px 0 22px}
+.field{display:grid;gap:6px;margin-bottom:16px}
+.field label{font-weight:700;font-size:.82rem;color:var(--green-800)}
+.field input,.field select,.field textarea{font-family:var(--body);font-size:1rem;padding:14px 16px;border-radius:14px;border:2px solid #dfe5dc;background:#fff;color:var(--ink);transition:border .2s, box-shadow .2s;width:100%}
+.field textarea{resize:vertical;min-height:110px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--green-700);box-shadow:0 0 0 4px rgba(217,245,58,.55)}
+.field.err input{border-color:#d33}
+.field .msg{color:#c22;font-size:.78rem;font-weight:600;display:none}
+.field.err .msg{display:block}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.svc-pick{display:flex;flex-wrap:wrap;gap:8px}
+.svc-pick label{cursor:pointer}
+.svc-pick input{position:absolute;opacity:0;pointer-events:none}
+.svc-pick span{display:inline-block;padding:9px 14px;border-radius:999px;border:2px solid #dfe5dc;font-weight:700;font-size:.8rem;color:var(--green-800);transition:.2s}
+.svc-pick input:checked + span{background:var(--green-800);border-color:var(--green-800);color:var(--ball)}
+.svc-pick input:focus-visible + span{box-shadow:0 0 0 4px rgba(217,245,58,.7)}
+.preview{background:#eef3ea;border-radius:14px;padding:14px 16px;font-size:.82rem;color:#33443b;white-space:pre-line;margin:6px 0 18px;border-left:4px solid var(--wa)}
+.preview b{display:block;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--green-700);margin-bottom:6px}
+form.card .btn-wa{width:100%;padding:17px;font-size:1.02rem}
+.fine{font-size:.75rem;color:#6b7a72;text-align:center;margin-top:12px}
+
+/* footer */
+footer{background:#041c13;padding:56px 0 110px;border-top:4px solid var(--ball)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;align-items:center}
+footer p{opacity:.7;font-size:.85rem}
+
+/* floating WA */
+.fab{position:fixed;right:22px;bottom:22px;z-index:60;width:64px;height:64px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 12px 30px rgba(37,211,102,.5);text-decoration:none}
+.fab::before{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid var(--wa);animation:ping 2s infinite}
+@keyframes ping{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.7);opacity:0}}
+.fab .wa-ico{width:34px;height:34px}
+.fab-tip{position:fixed;right:96px;bottom:36px;z-index:60;background:#fff;color:var(--ink);padding:9px 14px;border-radius:12px;font-weight:700;font-size:.82rem;box-shadow:0 10px 24px rgba(0,0,0,.3);transition:.3s}
+.fab-tip.gone{opacity:0;transform:translateX(10px);pointer-events:none}
+
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:100;display:none;place-items:center;padding:24px}
+.lb.open{display:grid}
+.lb img{max-height:90vh;max-width:92vw;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lb button{position:absolute;top:18px;right:22px;background:var(--ball);border:0;width:48px;height:48px;border-radius:50%;font-size:1.4rem;font-weight:900;cursor:pointer;color:var(--green-900)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(40px);transition:opacity .8s, transform .8s}
+.rv.in{opacity:1;transform:none}
+
+/* hit-the-ball mini game */
+.rally{margin-top:26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.rally button{background:transparent;border:2px dashed rgba(217,245,58,.6);color:var(--ball);padding:10px 16px;border-radius:999px;font-weight:700;cursor:pointer;font-family:var(--body)}
+.rally .score{font-family:var(--display);font-style:italic;font-weight:900;font-size:1.6rem}
+
+@media (max-width:960px){
+  .nav ul{display:none;position:absolute;top:74px;left:0;right:0;background:var(--green-900);flex-direction:column;padding:20px 6vw;gap:18px}
+  .nav ul.open{display:flex}
+  .menu-toggle{display:block}
+  .nav .btn{display:none}
+  .intro-grid,.included .wrap,.contact-grid{grid-template-columns:1fr}
+  .hero{background:linear-gradient(180deg, rgba(6,40,27,.55) 0%, rgba(6,40,27,.92) 55%, rgba(6,40,27,1) 100%), url('img/erik-retrato.webp') center top/cover no-repeat}
+  .hero .ball,.hero .shadow{right:12%}
+  .g1,.g2,.g3,.g4{grid-column:span 12;grid-row:auto;aspect-ratio:4/3}
+  .included::after{display:none}
+  .pillars{grid-template-columns:1fr}
+  .row2{grid-template-columns:1fr}
+  .fab-tip{display:none}
+  .scoreboard{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .scoreboard div{padding:12px 10px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .hero .role{letter-spacing:5px}
+  .hero .ball,.hero .shadow{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv,.inc-list li{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="wa" viewBox="0 0 32 32"><path fill="currentColor" d="M16.04 3C9.4 3 4 8.36 4 14.97c0 2.11.56 4.17 1.62 5.99L4 29l8.27-2.15a12.1 12.1 0 0 0 3.77.6C22.68 27.45 28 22.1 28 15.49 28 8.88 22.68 3 16.04 3zm0 22.37c-1.24 0-2.47-.24-3.62-.71l-.26-.11-4.9 1.28 1.31-4.77-.17-.27a9.9 9.9 0 0 1-1.5-5.24c0-5.48 4.5-9.94 10.04-9.94 5.53 0 9.96 4.68 9.96 10.12 0 5.48-4.43 9.64-9.86 9.64zm5.49-7.43c-.3-.15-1.78-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.96 1.17-.18.2-.35.22-.65.07-.3-.15-1.27-.46-2.42-1.48-.9-.79-1.5-1.77-1.67-2.07-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5h-.58c-.2 0-.52.07-.8.37-.27.3-1.04 1.01-1.04 2.47 0 1.45 1.07 2.86 1.22 3.06.15.2 2.1 3.2 5.1 4.48.71.31 1.27.49 1.7.63.72.22 1.37.19 1.88.12.57-.09 1.78-.72 2.03-1.42.25-.7.25-1.3.18-1.42-.08-.13-.28-.2-.58-.35z"/></symbol>
+</svg>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#inicio">
+      <img src="img/logo.webp" alt="Logo Match Point Pisco">
+      <span><b>MATCH POINT</b><small>PISCO · ERIK MAYEA</small></span>
+    </a>
+    <ul id="menu">
+      <li><a href="#erik">El profe</a></li>
+      <li><a href="#clases">Clases</a></li>
+      <li><a href="#incluye">Qué incluye</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a class="btn btn-wa wa-link" data-svc="general" href="#" target="_blank" rel="noopener"><svg class="wa-ico"><use href="#wa"/></svg>Escríbenos</a>
+    <button class="menu-toggle" id="menuBtn" aria-label="Abrir menú">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <span class="tag">🎾 Club de tenis Match Point · Pisco</span>
+    <h1>Erik<span>Mayea</span></h1>
+    <div class="role">Entrenador de tenis</div>
+    <p class="lead">Aprende tenis, sal de la rutina y disfruta cada punto. Nosotros ponemos la cancha, los materiales y el entrenamiento; <strong>tú, las ganas de jugar.</strong></p>
+    <div class="ctas">
+      <a class="btn btn-ball" href="#clases">Elige tu clase →</a>
+      <a class="btn btn-wa wa-link" data-svc="general" href="#" target="_blank" rel="noopener"><svg class="wa-ico"><use href="#wa"/></svg>Reserva por WhatsApp</a>
+    </div>
+    <div class="scoreboard" aria-label="Datos de las clases">
+      <div><b>5</b><small>Tipos de clase</small></div>
+      <div><b>60'</b><small>Por sesión</small></div>
+      <div><b>1–4</b><small>Personas</small></div>
+      <div><b>100%</b><small>Todo incluido</small></div>
+    </div>
+  </div>
+  <div class="ball"></div><div class="shadow"></div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="track">
+  <span>Venimos a divertirnos</span><span>Erik Mayea</span><span>Match Point Pisco</span><span>Tú trae las ganas</span>
+  <span>Venimos a divertirnos</span><span>Erik Mayea</span><span>Match Point Pisco</span><span>Tú trae las ganas</span>
+</div></div>
+
+<!-- INTRO / COACH -->
+<section class="intro" id="erik">
+  <div class="wrap intro-grid">
+    <div class="photo-stack rv">
+      <img class="p1" src="img/erik-retrato.webp" alt="Erik Mayea, entrenador de tenis, en la cancha">
+      <img class="p2" src="img/erik-escalera.webp" alt="Erik Mayea guiando un ejercicio de coordinación con escalera">
+      <div class="badge">Game<br>Set<br>Fun</div>
+    </div>
+    <div class="rv">
+      <div class="kicker">Tu entrenador</div>
+      <h2>Aprende con <em>Erik Mayea</em></h2>
+      <p class="sub">Erik convierte cada clase en una experiencia: técnica, coordinación y mucha energía en la cancha. Si nunca has tomado una raqueta o si quieres pulir tus golpes, él adapta cada ejercicio a tu nivel para que avances disfrutando.</p>
+      <div class="pillars">
+        <div class="pillar"><b>Técnica</b><small>Golpes, posición y desplazamiento paso a paso.</small></div>
+        <div class="pillar"><b>Físico</b><small>Coordinación, velocidad y reacción con trabajo de pies.</small></div>
+        <div class="pillar"><b>Diversión</b><small>Juegos, retos y puntos reales desde el primer día.</small></div>
+      </div>
+      <div class="rally">
+        <button id="hitBtn" type="button">🎾 ¡Devuelve la pelota!</button>
+        <span class="score" id="rallyScore">Rally: 0</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="clases">
+  <div class="wrap">
+    <div class="kicker rv">Match Point: venimos a divertirnos</div>
+    <h2 class="rv">Elige tu <em>clase</em></h2>
+    <p class="sub rv">Todas duran una hora e incluyen cancha, raquetas y materiales. Toca “Reservar” y le llega a Erik un WhatsApp con la clase que elegiste.</p>
+
+    <div class="filters rv" role="group" aria-label="Filtrar clases">
+      <button class="chip on" data-f="all">Todas</button>
+      <button class="chip" data-f="1">Solo yo</button>
+      <button class="chip" data-f="2">En pareja</button>
+      <button class="chip" data-f="3">Con amigos</button>
+      <button class="chip" data-f="4">En grupo</button>
+      <button class="chip" data-f="kids">Niños</button>
+    </div>
+
+    <div class="svc-grid" id="svcGrid"></div>
+  </div>
+</section>
+
+<!-- INCLUDED -->
+<section class="included" id="incluye">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker" style="color:#fff">Sin complicaciones</div>
+      <p class="quote" style="margin-top:14px">Tú trae las ganas.<br><em>Tu raqueta te espera</em><br>en Match Point.</p>
+      <a class="btn btn-ball wa-link" data-svc="general" href="#" target="_blank" rel="noopener" style="margin-top:30px"><svg class="wa-ico"><use href="#wa"/></svg>Quiero reservar</a>
+    </div>
+    <ul class="inc-list" id="incList">
+      <li><span class="chk">✓</span>Una hora de duración</li>
+      <li><span class="chk">✓</span>Cancha deportiva</li>
+      <li><span class="chk">✓</span>Entrenamiento guiado por el profesor</li>
+      <li><span class="chk">✓</span>Equipo profesional de entrenamiento</li>
+      <li><span class="chk">✓</span>Una raqueta por persona durante la clase</li>
+    </ul>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="galeria">
+  <div class="wrap">
+    <div class="kicker rv">En la cancha</div>
+    <h2 class="rv">Así se entrena <em>con Erik</em></h2>
+    <div class="coach-grid">
+      <figure class="g1 rv"><img src="img/erik-velocidad.webp" alt="Ejercicio de velocidad con banda de resistencia"><figcaption>Velocidad y reacción</figcaption></figure>
+      <figure class="g2 rv"><img src="img/erik-derecha.webp" alt="Erik Mayea ejecutando un golpe de derecha" style="object-position:40% center"><figcaption>Golpe de derecha</figcaption></figure>
+      <figure class="g3 rv"><img src="img/erik-escalera.webp" alt="Ejercicio de coordinación con escalera"><figcaption>Coordinación</figcaption></figure>
+      <figure class="g4 rv"><img src="img/erik-pelotas.webp" alt="Erik Mayea con pelotas de tenis en la red" style="object-position:60% center"><figcaption>Listo para jugar</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="wrap contact-grid">
+    <div class="rv">
+      <div class="kicker">Contacto directo</div>
+      <h2>Tu próximo punto <em>empieza aquí</em></h2>
+      <p class="sub">Escribe directo a Erik o deja tus datos en el formulario: el mensaje se abre en WhatsApp con tu nombre, tu teléfono y la clase que te interesa.</p>
+      <div class="direct">
+        <a class="line wa-link" data-svc="general" href="#" target="_blank" rel="noopener">
+          <span class="ic"><svg class="wa-ico" style="color:#fff"><use href="#wa"/></svg></span>
+          <span><b>+51 907 872 601</b><small>WhatsApp · Erik Mayea</small></span>
+        </a>
+        <a class="line" href="#clases">
+          <span class="ic" style="background:var(--ball);color:var(--green-900);font-size:1.4rem">🎾</span>
+          <span><b>Match Point · Pisco</b><small>Clases de 1 hora · 1 a 4 personas · niños</small></span>
+        </a>
+      </div>
+    </div>
+
+    <form class="card rv" id="form" novalidate>
+      <h3>Consulta rápida</h3>
+      <p>Llénalo en 20 segundos y envíalo por WhatsApp.</p>
+
+      <div class="row2">
+        <div class="field" id="fName">
+          <label for="name">Tu nombre</label>
+          <input id="name" name="name" autocomplete="name" placeholder="Ej. María López" required>
+          <span class="msg">Escribe tu nombre.</span>
+        </div>
+        <div class="field" id="fPhone">
+          <label for="phone">Tu teléfono</label>
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ej. 987 654 321" required>
+          <span class="msg">Escribe un teléfono válido.</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>¿Qué te interesa?</label>
+        <div class="svc-pick" id="svcPick"></div>
+      </div>
+
+      <div class="field">
+        <label for="comment">Comentario o consulta</label>
+        <textarea id="comment" name="comment" placeholder="Ej. ¿Qué horarios tienen disponibles esta semana?"></textarea>
+      </div>
+
+      <div class="preview" id="preview"><b>Vista previa del mensaje</b><span id="previewText"></span></div>
+
+      <a class="btn btn-wa" id="sendBtn" href="#" target="_blank" rel="noopener"><svg class="wa-ico"><use href="#wa"/></svg>Enviar por WhatsApp</a>
+      <p class="fine">Se abrirá WhatsApp con tu mensaje listo para enviar al +51 907 872 601.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#inicio">
+      <img src="img/logo.webp" alt="Logo Match Point Pisco">
+      <span><b>MATCH POINT</b><small>PISCO · ERIK MAYEA</small></span>
+    </a>
+    <p>Entrenador de tenis Erik Mayea · Pisco, Perú · WhatsApp +51 907 872 601</p>
+    <p>© <span id="yr"></span> Match Point Pisco. Venimos a divertirnos 🎾</p>
+  </div>
+</footer>
+
+<a class="fab wa-link" data-svc="general" href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg class="wa-ico" style="color:#fff"><use href="#wa"/></svg></a>
+<div class="fab-tip" id="fabTip">¿Dudas? ¡Escríbele a Erik! 👋</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Imagen ampliada"><button type="button" id="lbClose" aria-label="Cerrar">✕</button><img id="lbImg" alt=""></div>
+
+<script>
+const PHONE = '51907872601';
+
+const SERVICES = [
+  {id:'personalizada', name:'Clase personalizada', short:'Personalizada', slogan:'Tu ritmo, tus objetivos, tu momento.',
+   text:'Una hora con toda la atención del profesor para ti. Aprende desde cero o mejora tus golpes con ejercicios adaptados a tu nivel, mientras disfrutas cada avance.',
+   people:'1 persona', f:'1', img:'img/personalizada.webp', cta:'Reserva tu clase personalizada'},
+  {id:'dos', name:'Clase de dos', short:'De dos', slogan:'Comparte la cancha y las ganas de pasarla bien.',
+   text:'Ven con tu pareja, un amigo o un familiar. Disfruten una hora de aprendizaje, peloteos y retos para mejorar juntos. La revancha será una buena excusa para volver.',
+   people:'2 personas', f:'2', img:'img/dos.webp', cta:'Reserva tu clase de dos'},
+  {id:'tres', name:'Clase de tres', short:'De tres', slogan:'Tu mejor plan ahora se juega en la cancha.',
+   text:'Reúne a dos amigos o familiares y disfruten una clase dinámica con ejercicios, juegos y retos. Aprendan, actívense y celebren cada buen golpe entre risas.',
+   people:'3 personas', f:'3', img:'img/tres.webp', cta:'Reserva tu clase de tres'},
+  {id:'grupal', name:'Clase grupal', short:'Grupal', slogan:'Cuatro personas, una cancha y mucha diversión.',
+   text:'Arma tu grupo y conviertan el entrenamiento en el plan de la semana. Disfruten retos en equipo, practiquen sus golpes y vivan la emoción de jugar puntos de dobles.',
+   people:'4 personas', f:'4', img:'img/grupal.webp', cta:'Reserva tu clase grupal'},
+  {id:'infantil', name:'Clase infantil', short:'Infantil', slogan:'Pequeños tenistas, grandes momentos de diversión.',
+   text:'Aprenden jugando, desarrollan coordinación y ganan confianza con actividades adaptadas a su edad y nivel. ¡Que su próxima aventura empiece con una raqueta!',
+   people:'Niños', f:'kids', img:'img/infantil.webp', cta:'Reserva su clase infantil'}
+];
+
+const waURL = text => `https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`;
+const svcMsg = s => `¡Hola Erik! 🎾 Vi la página de Match Point Pisco y quiero reservar la *${s.name}* (${s.people}, 1 hora). ¿Qué horarios tienes disponibles?`;
+const generalMsg = '¡Hola Erik! 🎾 Vi la página de Match Point Pisco y quiero información sobre las clases de tenis.';
+
+/* render service cards */
+const grid = document.getElementById('svcGrid');
+grid.innerHTML = SERVICES.map(s => `
+  <article class="svc rv" data-f="${s.f}">
+    <div class="img" data-full="${s.img}" role="button" tabindex="0" aria-label="Ver afiche de ${s.name}">
+      <img src="${s.img}" alt="Afiche ${s.name} Match Point Pisco" loading="lazy">
+      <span class="people">${s.people}</span>
+      <span class="zoom">🔍 Ver afiche</span>
+    </div>
+    <div class="body">
+      <h3>${s.name}</h3>
+      <div class="slogan">${s.slogan}</div>
+      <p>${s.text}</p>
+      <div class="meta"><span>⏱ 1 hora</span><span>👥 ${s.people}</span><span>🎾 Raqueta incluida</span></div>
+      <div class="actions">
+        <a class="btn btn-wa" href="${waURL(svcMsg(s))}" target="_blank" rel="noopener"><svg class="wa-ico"><use href="#wa"/></svg>${s.cta}</a>
+        <a class="btn ask" href="#contacto" data-pick="${s.id}" title="Consultar con comentario">Consultar</a>
+      </div>
+    </div>
+  </article>`).join('');
+
+/* general WhatsApp links */
+document.querySelectorAll('.wa-link').forEach(a => a.href = waURL(generalMsg));
+
+/* filters */
+document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+  document.querySelectorAll('.chip').forEach(x => x.classList.remove('on'));
+  c.classList.add('on');
+  const f = c.dataset.f;
+  document.querySelectorAll('.svc').forEach(card => card.classList.toggle('hide', f !== 'all' && card.dataset.f !== f));
+}));
+
+/* form service picker */
+const pick = document.getElementById('svcPick');
+pick.innerHTML = [{id:'general', short:'Consulta general'}, ...SERVICES].map((s,i) =>
+  `<label><input type="radio" name="svc" value="${s.id}" ${i===0?'checked':''}><span>${s.short}</span></label>`).join('');
+
+const $ = id => document.getElementById(id);
+const nameI = $('name'), phoneI = $('phone'), commentI = $('comment'), sendBtn = $('sendBtn');
+
+function buildMessage(){
+  const id = document.querySelector('input[name="svc"]:checked').value;
+  const s = SERVICES.find(x => x.id === id);
+  const name = nameI.value.trim() || '—';
+  const phone = phoneI.value.trim() || '—';
+  const comment = commentI.value.trim();
+  const lines = [
+    '¡Hola Erik! 🎾 Te escribo desde la web de Match Point Pisco.',
+    '',
+    `*Servicio:* ${s ? s.name + ' (' + s.people + ', 1 hora)' : 'Consulta general'}`,
+    `*Nombre:* ${name}`,
+    `*Teléfono:* ${phone}`,
+    `*Consulta:* ${comment || (s ? 'Quisiera reservar y conocer los horarios disponibles.' : 'Quisiera información sobre las clases.')}`
+  ];
+  return lines.join('\n');
+}
+function refresh(){
+  const m = buildMessage();
+  $('previewText').textContent = m.replace(/\*/g,'');
+  sendBtn.href = waURL(m);
+}
+['input','change'].forEach(ev => $('form').addEventListener(ev, refresh));
+refresh();
+
+function validate(){
+  let ok = true;
+  const n = nameI.value.trim().length >= 2;
+  const p = phoneI.value.replace(/\D/g,'').length >= 7;
+  $('fName').classList.toggle('err', !n);
+  $('fPhone').classList.toggle('err', !p);
+  if(!n){ nameI.focus(); ok = false; }
+  else if(!p){ phoneI.focus(); ok = false; }
+  return ok;
+}
+sendBtn.addEventListener('click', e => { if(!validate()){ e.preventDefault(); } else { refresh(); } });
+$('form').addEventListener('submit', e => { e.preventDefault(); if(validate()) sendBtn.click(); });
+[nameI, phoneI].forEach(i => i.addEventListener('input', () => i.parentElement.classList.remove('err')));
+
+/* "Consultar" on a card preselects the service */
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-pick]');
+  if(!a) return;
+  const r = document.querySelector(`input[name="svc"][value="${a.dataset.pick}"]`);
+  if(r){ r.checked = true; refresh(); }
+  setTimeout(() => nameI.focus({preventScroll:true}), 700);
+});
+
+/* lightbox */
+const lb = $('lb'), lbImg = $('lbImg');
+function openLB(src, alt){ lbImg.src = src; lbImg.alt = alt || ''; lb.classList.add('open'); }
+document.addEventListener('click', e => {
+  const t = e.target.closest('.svc .img, .coach-grid figure');
+  if(t){ const img = t.querySelector('img'); openLB(img.src, img.alt); }
+});
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') lb.classList.remove('open');
+  if(e.key === 'Enter' && e.target.matches('.svc .img')){ const img = e.target.querySelector('img'); openLB(img.src, img.alt); }
+});
+lb.addEventListener('click', e => { if(e.target !== lbImg) lb.classList.remove('open'); });
+
+/* nav */
+const nav = $('nav');
+const onScroll = () => nav.classList.toggle('solid', scrollY > 40);
+addEventListener('scroll', onScroll, {passive:true}); onScroll();
+$('menuBtn').addEventListener('click', () => $('menu').classList.toggle('open'));
+document.querySelectorAll('#menu a').forEach(a => a.addEventListener('click', () => $('menu').classList.remove('open')));
+
+/* reveal on scroll */
+const io = new IntersectionObserver(es => es.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }), {threshold:.15});
+document.querySelectorAll('.rv, #incList').forEach(el => io.observe(el));
+
+/* mini rally game */
+let rally = 0;
+const phrases = ['¡Buen golpe!','¡Derecha!','¡Revés!','¡Volea!','¡Ace!','¡Match Point!'];
+$('hitBtn').addEventListener('click', ev => {
+  rally++;
+  $('rallyScore').textContent = `Rally: ${rally} · ${phrases[Math.min(Math.floor(rally/3), phrases.length-1)]}`;
+  const b = document.createElement('div');
+  b.className = 'ball';
+  const r = ev.currentTarget.getBoundingClientRect();
+  Object.assign(b.style, {position:'fixed', left:r.left + r.width/2 + 'px', top:r.top + 'px', '--s':'34px', zIndex:80});
+  b.style.setProperty('--s','34px');
+  document.body.appendChild(b);
+  const dx = (Math.random() * 600 - 300), dy = -(250 + Math.random()*200);
+  b.animate([{transform:'translate(0,0) rotate(0)'},{transform:`translate(${dx}px,${dy}px) rotate(540deg)`, opacity:0}], {duration:1100, easing:'cubic-bezier(.2,.7,.3,1)'}).onfinish = () => b.remove();
+});
+
+/* floating tip */
+setTimeout(() => $('fabTip').classList.add('gone'), 7000);
+$('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
